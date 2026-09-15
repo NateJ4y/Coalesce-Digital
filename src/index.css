@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-antonio: "Antonio", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  --font-satisfy: "Satisfy", cursive;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom font utilities for direct styling */
+.font-antonio {
+  font-family: "Antonio", sans-serif;
+}
+
+.font-poppins {
+  font-family: "Poppins", sans-serif;
+}
+
+.font-satisfy {
+  font-family: "Satisfy", cursive;
+}
+
+/* Marquee continuous scroll */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

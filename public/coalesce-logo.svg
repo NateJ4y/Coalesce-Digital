@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <g fill="none" stroke="#000000" stroke-width="16" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="10">
+    <!-- 'A' Left outer leg and tail -->
+    <path d="M 208 154 L 174 188 L 256 270" />
+    <!-- 'A' Right leg -->
+    <path d="M 208 154 L 274 220" />
+    <!-- 'A' Crossbar -->
+    <path d="M 197 211 L 235 173" />
+    
+    <!-- 'W' interlocking strokes -->
+    <!-- Stroke 1 (down-right) & Stroke 2 (up-right) -->
+    <path d="M 235 154 L 273 192 L 293 172" />
+    <!-- Stroke 3 (down-right) & Stroke 4 (up-right) -->
+    <path d="M 264 154 L 295 185 L 326 154" />
+  </g>
+  <text x="250" y="316" font-family="'Montserrat', 'Poppins', -apple-system, sans-serif" font-size="33" font-weight="600" letter-spacing="5.5" text-anchor="middle" fill="#000000">COALESCE</text>
+  <text x="250" y="340" font-family="'Montserrat', 'Poppins', -apple-system, sans-serif" font-size="14" font-weight="400" letter-spacing="7" text-anchor="middle" fill="#000000">DIGITAL</text>
+</svg>
