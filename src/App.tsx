@@ -169,12 +169,12 @@ export default function App() {
                 <div className="inline-flex items-center justify-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]">
                   <span className="w-2 h-2 rounded-full bg-[#b3de4f] animate-pulse" /> {heroSlides[activeHero].eyebrow}
                 </div>
-                <div className="relative min-h-[27rem] sm:min-h-[30rem] lg:min-h-[31rem]">
+                <div className="relative min-h-[38rem] sm:min-h-[40rem] lg:min-h-[41rem]">
                   {heroSlides.map((slide, index) => (
                     <div key={index} className={`absolute inset-0 flex flex-col items-center transition-all duration-700 ${activeHero === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
-                      <h1 className="font-antonio font-bold uppercase text-[15vw] sm:text-[10vw] lg:text-[8.25rem] leading-[0.88] tracking-[-0.045em] max-w-[11ch] break-words">{slide.title}</h1>
-                      <p className="mt-6 sm:mt-7 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed">{slide.body}</p>
-                      <ul className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl">
+                      <h1 className="font-antonio font-bold uppercase text-[15vw] sm:text-[10vw] lg:text-[8.25rem] leading-[0.88] tracking-[-0.045em] max-w-[11ch] min-h-[11rem] sm:min-h-[13rem] lg:min-h-[15rem] flex items-center justify-center break-words">{slide.title}</h1>
+                      <p className="mt-5 sm:mt-6 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed">{slide.body}</p>
+                      <ul className="mt-5 sm:mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl">
                         {slide.tags.map(tag => <li key={tag} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold">{tag}</li>)}
                       </ul>
                       <div className="flex flex-wrap justify-center gap-3 mt-7 sm:mt-8">
