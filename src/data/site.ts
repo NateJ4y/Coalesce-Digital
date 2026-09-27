@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import { Code2, Instagram, Palette, Workflow, type LucideIcon } from 'lucide-react';
 
 export type HeroSlide = {
   eyebrow: string;
-  title: React.ReactNode;
+  title: ReactNode;
   accentClass: string;
   body: string;
   image: string;
