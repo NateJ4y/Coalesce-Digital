@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrowRight,
   ArrowUpRight,
-  Bot,
   Check,
   ChevronDown,
   Code2,
   Instagram,
-  Megaphone,
   Menu,
-  MousePointer2,
   Palette,
-  Search,
   Sparkles,
   Workflow,
   X,
@@ -67,6 +63,41 @@ const journey = [
   ['06', 'Grow the machine', 'We measure what is working, improve the system and add the next digital layer.'],
 ];
 
+const heroSlides = [
+  {
+    eyebrow: '01 / BUILD + CONNECT',
+    title: <>Build.<br/><span>Connect.</span></>,
+    body: 'Build the digital foundation. Connect the pieces. Make every customer touchpoint work together.',
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1800&q=85',
+    icon: 'https://img.icons8.com/3d-fluency/94/code.png',
+    tags: ['Websites', 'Applications', 'Brand systems'],
+  },
+  {
+    eyebrow: '02 / DIGITAL TRANSFORMATION',
+    title: <>Transform<br/><span>the way you work.</span></>,
+    body: 'Turn disconnected tools and manual processes into a digital operating system built around your business.',
+    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85',
+    icon: 'https://img.icons8.com/3d-fluency/94/automation.png',
+    tags: ['Systems', 'AI', 'Workflows'],
+  },
+  {
+    eyebrow: '03 / WHAT WE OFFER',
+    title: <>Four services.<br/><span>One system.</span></>,
+    body: 'Web & Apps. Automation. Social Media. Digital Design & Marketing. Choose one or connect them into one growth engine.',
+    image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1800&q=85',
+    icon: 'https://img.icons8.com/3d-fluency/94/web.png',
+    tags: ['Web + Apps', 'Automation', 'Social', 'Marketing'],
+  },
+  {
+    eyebrow: '04 / AUTOMATION',
+    title: <>Make the work<br/><span>move itself.</span></>,
+    body: 'Capture leads, scrape prospects, trigger follow-ups and automate repetitive work so your team can focus on growth.',
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1800&q=85',
+    icon: 'https://img.icons8.com/3d-fluency/94/robot-2.png',
+    tags: ['Lead scraping', 'Acquisition', 'AI agents'],
+  },
+];
+
 const packages = [
   { name: 'Launch', price: 'R1,500+', label: 'Start here', items: ['One focused website or landing page', 'Mobile responsive design', 'Basic brand direction', 'Lead capture CTA'] },
   { name: 'Growth', price: 'R5,000+', label: 'Most popular', items: ['Professional website', 'Content/design system', 'Conversion-focused structure', 'Lead acquisition setup', 'Automation starter'] },
@@ -78,6 +109,26 @@ export default function App() {
   const [service, setService] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const [openService, setOpenService] = useState(0);
+  const [activeHero, setActiveHero] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setActiveHero((current) => (current + 1) % heroSlides.length), 6500);
+    return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const nodes = document.querySelectorAll('.float-on-scroll');
+    if (!('IntersectionObserver' in window)) {
+      nodes.forEach((node) => node.classList.add('is-floating'));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add('is-floating');
+      else entry.target.classList.remove('is-floating');
+    }), { threshold: 0.18 });
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
 
   const openContact = (selected = '') => {
     setService(selected);
@@ -108,24 +159,49 @@ export default function App() {
       </nav>
 
       <main id="top">
-        <section className="min-h-[92vh] flex items-center px-5 sm:px-8 pt-32 pb-20 max-w-7xl mx-auto">
-          <div className="w-full grid lg:grid-cols-12 gap-12 items-end">
-            <div className="lg:col-span-8">
-              <div className="inline-flex items-center gap-2 border border-black/15 rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]"><span className="w-2 h-2 rounded-full bg-[#b3de4f]"/> Digital transformation + growth</div>
-              <h1 className="font-antonio font-bold uppercase text-[17vw] sm:text-[12vw] lg:text-[9.5rem] leading-[0.78] tracking-[-0.05em]">Build.<br/><span className="text-neutral-400">Connect.</span><br/>Grow.</h1>
-              <p className="mt-8 max-w-2xl text-lg sm:text-xl text-neutral-600 leading-relaxed">Coalesce Digital brings <strong className="text-black">web, automation, social media, design and marketing</strong> into one connected growth system — so your business does not just look digital. It operates digitally.</p>
-              <div className="flex flex-wrap gap-3 mt-8">
-                <button onClick={() => openContact()} className="bg-black text-white rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16}/></button>
-                <button onClick={() => go('services')} className="border border-black/20 rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest">Explore services</button>
+        <section className="relative min-h-[92vh] flex items-center px-5 sm:px-8 pt-32 pb-16 overflow-hidden">
+          {heroSlides.map((slide, index) => (
+            <div key={slide.eyebrow} className={`absolute inset-0 transition-opacity duration-1000 ${activeHero === index ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+              <img src={slide.image} alt="" className="absolute inset-0 w-full h-full object-cover scale-105" />
+              <div className="absolute inset-0 bg-black/65" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+            </div>
+          ))}
+          <div className="relative z-10 w-full max-w-7xl mx-auto text-white">
+            <div className="grid lg:grid-cols-12 gap-10 items-end">
+              <div className="lg:col-span-8">
+                <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]">
+                  <span className="w-2 h-2 rounded-full bg-[#b3de4f] animate-pulse" /> {heroSlides[activeHero].eyebrow}
+                </div>
+                <div className="relative min-h-[19rem] sm:min-h-[22rem]">
+                  {heroSlides.map((slide, index) => (
+                    <div key={index} className={`absolute inset-0 transition-all duration-700 ${activeHero === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
+                      <h1 className="font-antonio font-bold uppercase text-[17vw] sm:text-[12vw] lg:text-[9.5rem] leading-[0.78] tracking-[-0.05em]">{slide.title}</h1>
+                      <p className="mt-8 max-w-2xl text-lg sm:text-xl text-white/75 leading-relaxed">{slide.body}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-wrap gap-3 mt-8">
+                  <button onClick={() => openContact()} className="float-on-scroll bg-white text-black rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16}/></button>
+                  <button onClick={() => go('services')} className="float-on-scroll border border-white/30 bg-white/5 backdrop-blur rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest">Explore services</button>
+                </div>
+              </div>
+              <div className="lg:col-span-4">
+                <div className="float-on-scroll rounded-[2rem] p-7 bg-black/55 backdrop-blur-xl border border-white/15 overflow-hidden">
+                  <div className="flex items-start justify-between">
+                    <img src={heroSlides[activeHero].icon} alt="" className="w-20 h-20 object-contain drop-shadow-xl" />
+                    <span className="font-antonio text-5xl text-white/25">0{activeHero + 1}</span>
+                  </div>
+                  <p className="text-sm text-white/70 leading-relaxed mt-8">Coalesce connects strategy, design, technology and automation into one customer journey.</p>
+                  <div className="flex flex-wrap gap-2 mt-6">{heroSlides[activeHero].tags.map(tag => <span key={tag} className="rounded-full bg-white/10 border border-white/10 px-3 py-2 text-[9px] uppercase tracking-widest font-bold">{tag}</span>)}</div>
+                </div>
               </div>
             </div>
-            <div className="lg:col-span-4 lg:pb-2">
-              <div className="bg-black text-white rounded-[2rem] p-7 relative overflow-hidden">
-                <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full border border-white/20"/><div className="absolute right-6 top-6 w-20 h-20 rounded-full border border-[#b3de4f]/50"/>
-                <Sparkles className="text-[#b3de4f] mb-12" size={28}/>
-                <p className="text-sm text-neutral-300 leading-relaxed">One partner. Four digital disciplines. One customer journey.</p>
-                <div className="mt-8 grid grid-cols-2 gap-2 text-[10px] uppercase tracking-widest font-bold"><span className="bg-white/10 rounded-xl p-3">Web + Apps</span><span className="bg-white/10 rounded-xl p-3">Automation</span><span className="bg-white/10 rounded-xl p-3">Social</span><span className="bg-white/10 rounded-xl p-3">Design + Marketing</span></div>
+            <div className="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+              <div className="flex gap-2">
+                {heroSlides.map((slide, index) => <button key={slide.eyebrow} aria-label={`Show slide ${index + 1}`} onClick={() => setActiveHero(index)} className={`h-1.5 rounded-full transition-all duration-500 ${activeHero === index ? 'w-14 bg-[#b3de4f]' : 'w-7 bg-white/30'}`} />)}
               </div>
+              <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">01 — 04 / Digital transformation</div>
             </div>
           </div>
         </section>
