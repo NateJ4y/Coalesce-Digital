@@ -66,7 +66,7 @@ const journey = [
 const heroSlides = [
   {
     eyebrow: '01 / BUILD + CONNECT',
-    title: <>Build.<br/><span>Connect.</span></>,
+    title: <>Build.<br/><span className="text-[#b3de4f]">Connect.</span></>,
     body: 'Build the digital foundation. Connect the pieces. Make every customer touchpoint work together.',
     image: 'https://images.unsplash.com/photo-1649429398909-db7ae841c386?auto=format&fit=crop&w=2000&q=85',
     icon: 'https://img.icons8.com/3d-fluency/94/code.png',
@@ -74,7 +74,7 @@ const heroSlides = [
   },
   {
     eyebrow: '02 / DIGITAL TRANSFORMATION',
-    title: <>Transform<br/><span>the way you work.</span></>,
+    title: <>Transform<br/><span className="text-[#7dd3fc]">the way you work.</span></>,
     body: 'Turn disconnected tools and manual processes into a digital operating system built around your business.',
     image: 'https://images.unsplash.com/photo-1722316805351-d5a56965f926?auto=format&fit=crop&w=2000&q=85',
     icon: 'https://img.icons8.com/3d-fluency/94/automation.png',
@@ -82,7 +82,7 @@ const heroSlides = [
   },
   {
     eyebrow: '03 / WHAT WE OFFER',
-    title: <>Four services.<br/><span>One system.</span></>,
+    title: <>Four services.<br/><span className="text-[#b3de4f]">One system.</span></>,
     body: 'Web & Apps. Automation. Social Media. Digital Design & Marketing. Choose one or connect them into one growth engine.',
     image: 'https://images.unsplash.com/photo-1706508156658-f246b0c8753c?auto=format&fit=crop&w=2000&q=85',
     icon: 'https://img.icons8.com/3d-fluency/94/web.png',
@@ -90,7 +90,7 @@ const heroSlides = [
   },
   {
     eyebrow: '04 / AUTOMATION',
-    title: <>Make the work<br/><span>move itself.</span></>,
+    title: <>Make the work<br/><span className="text-[#c4b5fd]">move itself.</span></>,
     body: 'Capture leads, scrape prospects, trigger follow-ups and automate repetitive work so your team can focus on growth.',
     image: 'https://images.unsplash.com/photo-1722405375190-8d0b2a765840?auto=format&fit=crop&w=2000&q=85',
     icon: 'https://img.icons8.com/3d-fluency/94/robot-2.png',
@@ -174,10 +174,10 @@ export default function App() {
                 <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]">
                   <span className="w-2 h-2 rounded-full bg-[#b3de4f] animate-pulse" /> {heroSlides[activeHero].eyebrow}
                 </div>
-                <div className="relative min-h-[19rem] sm:min-h-[22rem]">
+                <div className="relative min-h-[27rem] sm:min-h-[30rem] lg:min-h-[25rem]">
                   {heroSlides.map((slide, index) => (
                     <div key={index} className={`absolute inset-0 transition-all duration-700 ${activeHero === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
-                      <h1 className="font-antonio font-bold uppercase text-[17vw] sm:text-[12vw] lg:text-[9.5rem] leading-[0.78] tracking-[-0.05em]">{slide.title}</h1>
+                      <h1 className="font-antonio font-bold uppercase text-[15vw] sm:text-[10.5vw] lg:text-[8.5rem] leading-[0.88] tracking-[-0.045em] max-w-[10ch] break-words">{slide.title}</h1>
                       <p className="mt-8 max-w-2xl text-lg sm:text-xl text-white/75 leading-relaxed">{slide.body}</p>
                     </div>
                   ))}
