@@ -70,27 +70,6 @@ const heroSlides = [
     image: 'https://images.unsplash.com/photo-1649429398909-db7ae841c386?auto=format&fit=crop&w=2000&q=85',
     tags: ['Websites', 'Applications', 'Brand systems'],
   },
-  {
-    eyebrow: '02 / DIGITAL TRANSFORMATION',
-    title: <>Transform<br/><span className="text-[#7dd3fc]">the way you work.</span></>,
-    body: 'Turn disconnected tools and manual processes into a digital operating system built around your business.',
-    image: 'https://images.unsplash.com/photo-1722316805351-d5a56965f926?auto=format&fit=crop&w=2000&q=85',
-    tags: ['Systems', 'AI', 'Workflows'],
-  },
-  {
-    eyebrow: '03 / WHAT WE OFFER',
-    title: <>Four services.<br/><span className="text-[#b3de4f]">One system.</span></>,
-    body: 'Web & Apps. Automation. Social Media. Digital Design & Marketing. Choose one or connect them into one growth engine.',
-    image: 'https://images.unsplash.com/photo-1706508156658-f246b0c8753c?auto=format&fit=crop&w=2000&q=85',
-    tags: ['Web + Apps', 'Automation', 'Social', 'Marketing'],
-  },
-  {
-    eyebrow: '04 / AUTOMATION',
-    title: <>Make the work<br/><span className="text-[#c4b5fd]">move itself.</span></>,
-    body: 'Capture leads, scrape prospects, trigger follow-ups and automate repetitive work so your team can focus on growth.',
-    image: 'https://images.unsplash.com/photo-1722405375190-8d0b2a765840?auto=format&fit=crop&w=2000&q=85',
-    tags: ['Lead scraping', 'Acquisition', 'AI agents'],
-  },
 ];
 
 const packages = [
