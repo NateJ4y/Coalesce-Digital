@@ -8,7 +8,6 @@ import {
   Instagram,
   Menu,
   Palette,
-  Sparkles,
   Workflow,
   X,
   Zap,
@@ -69,7 +68,6 @@ const heroSlides = [
     title: <>Build.<br/><span className="text-[#b3de4f]">Connect.</span></>,
     body: 'Build the digital foundation. Connect the pieces. Make every customer touchpoint work together.',
     image: 'https://images.unsplash.com/photo-1649429398909-db7ae841c386?auto=format&fit=crop&w=2000&q=85',
-    icon: 'https://img.icons8.com/3d-fluency/94/code.png',
     tags: ['Websites', 'Applications', 'Brand systems'],
   },
   {
@@ -77,7 +75,6 @@ const heroSlides = [
     title: <>Transform<br/><span className="text-[#7dd3fc]">the way you work.</span></>,
     body: 'Turn disconnected tools and manual processes into a digital operating system built around your business.',
     image: 'https://images.unsplash.com/photo-1722316805351-d5a56965f926?auto=format&fit=crop&w=2000&q=85',
-    icon: 'https://img.icons8.com/3d-fluency/94/automation.png',
     tags: ['Systems', 'AI', 'Workflows'],
   },
   {
@@ -85,7 +82,6 @@ const heroSlides = [
     title: <>Four services.<br/><span className="text-[#b3de4f]">One system.</span></>,
     body: 'Web & Apps. Automation. Social Media. Digital Design & Marketing. Choose one or connect them into one growth engine.',
     image: 'https://images.unsplash.com/photo-1706508156658-f246b0c8753c?auto=format&fit=crop&w=2000&q=85',
-    icon: 'https://img.icons8.com/3d-fluency/94/web.png',
     tags: ['Web + Apps', 'Automation', 'Social', 'Marketing'],
   },
   {
@@ -93,7 +89,6 @@ const heroSlides = [
     title: <>Make the work<br/><span className="text-[#c4b5fd]">move itself.</span></>,
     body: 'Capture leads, scrape prospects, trigger follow-ups and automate repetitive work so your team can focus on growth.',
     image: 'https://images.unsplash.com/photo-1722405375190-8d0b2a765840?auto=format&fit=crop&w=2000&q=85',
-    icon: 'https://img.icons8.com/3d-fluency/94/robot-2.png',
     tags: ['Lead scraping', 'Acquisition', 'AI agents'],
   },
 ];
@@ -145,18 +140,18 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#f3f3f3] text-[#111] font-poppins overflow-x-hidden">
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-6xl rounded-full bg-white/90 backdrop-blur-xl border border-black/10 shadow-lg px-5 py-3">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center gap-6 sm:gap-8">
           <button onClick={() => go('top')} className="font-antonio font-bold text-2xl tracking-tight">COALESCE<span className="text-neutral-400">.</span></button>
-          <div className="hidden md:flex items-center gap-7 text-[11px] uppercase tracking-[0.14em] font-bold">
+          <div className="hidden md:flex items-center justify-center gap-7 text-[11px] uppercase tracking-[0.14em] font-bold">
             <button onClick={() => go('services')}>Services</button>
             <button onClick={() => go('journey')}>How it works</button>
             <button onClick={() => go('pricing')}>Pricing</button>
             <button onClick={() => go('work')}>Why Coalesce</button>
           </div>
           <button onClick={() => openContact()} className="hidden md:flex items-center gap-2 bg-black text-white rounded-full px-5 py-2.5 text-[11px] font-bold uppercase tracking-widest">Start a project <ArrowUpRight size={14}/></button>
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X/> : <Menu/>}</button>
+          <button className="md:hidden absolute right-5" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X/> : <Menu/>}</button>
         </div>
-        {menuOpen && <div className="md:hidden pt-5 pb-2 grid gap-4 text-sm font-bold uppercase tracking-widest"><button onClick={() => go('services')}>Services</button><button onClick={() => go('journey')}>How it works</button><button onClick={() => go('pricing')}>Pricing</button><button onClick={() => openContact()}>Start a project</button></div>}
+        {menuOpen && <div className="md:hidden pt-5 pb-2 grid justify-items-center gap-4 text-sm font-bold uppercase tracking-widest"><button onClick={() => go('services')}>Services</button><button onClick={() => go('journey')}>How it works</button><button onClick={() => go('pricing')}>Pricing</button><button onClick={() => openContact()}>Start a project</button></div>}
       </nav>
 
       <main id="top">
@@ -168,33 +163,26 @@ export default function App() {
               <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
             </div>
           ))}
-          <div className="relative z-10 w-full max-w-[80rem] mx-auto text-white">
-            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              <div className="lg:col-span-8 min-w-0">
-                <div className="inline-flex items-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]">
+          <div className="relative z-10 w-full max-w-[80rem] mx-auto text-white text-center">
+            <div className="flex justify-center">
+              <div className="w-full max-w-5xl min-w-0">
+                <div className="inline-flex items-center justify-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]">
                   <span className="w-2 h-2 rounded-full bg-[#b3de4f] animate-pulse" /> {heroSlides[activeHero].eyebrow}
                 </div>
-                <div className="relative min-h-[19rem] sm:min-h-[22rem] lg:min-h-[24rem]">
+                <div className="relative min-h-[27rem] sm:min-h-[30rem] lg:min-h-[31rem]">
                   {heroSlides.map((slide, index) => (
-                    <div key={index} className={`absolute inset-0 transition-all duration-700 ${activeHero === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
-                      <h1 className="font-antonio font-bold uppercase text-[15vw] sm:text-[10vw] lg:text-[8.25rem] leading-[0.88] tracking-[-0.045em] max-w-[9.5ch] break-words">{slide.title}</h1>
-                      <p className="mt-6 sm:mt-7 max-w-2xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed">{slide.body}</p>
+                    <div key={index} className={`absolute inset-0 flex flex-col items-center transition-all duration-700 ${activeHero === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}>
+                      <h1 className="font-antonio font-bold uppercase text-[15vw] sm:text-[10vw] lg:text-[8.25rem] leading-[0.88] tracking-[-0.045em] max-w-[11ch] break-words">{slide.title}</h1>
+                      <p className="mt-6 sm:mt-7 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed">{slide.body}</p>
+                      <ul className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl">
+                        {slide.tags.map(tag => <li key={tag} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold">{tag}</li>)}
+                      </ul>
+                      <div className="flex flex-wrap justify-center gap-3 mt-7 sm:mt-8">
+                        <button onClick={() => openContact()} className="float-on-scroll bg-white text-black rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16}/></button>
+                        <button onClick={() => go('services')} className="float-on-scroll border border-white/30 bg-white/5 backdrop-blur rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest">Explore services</button>
+                      </div>
                     </div>
                   ))}
-                </div>
-                <div className="flex flex-wrap gap-3 mt-6 sm:mt-8">
-                  <button onClick={() => openContact()} className="float-on-scroll bg-white text-black rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16}/></button>
-                  <button onClick={() => go('services')} className="float-on-scroll border border-white/30 bg-white/5 backdrop-blur rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest">Explore services</button>
-                </div>
-              </div>
-              <div className="lg:col-span-4 min-w-0">
-                <div className="float-on-scroll rounded-[2rem] p-6 sm:p-7 bg-black/55 backdrop-blur-xl border border-white/15 overflow-hidden">
-                  <div className="flex items-start justify-between">
-                    <img src={heroSlides[activeHero].icon} alt="" className="w-20 h-20 object-contain drop-shadow-xl" />
-                    <span className="font-antonio text-5xl text-white/25">0{activeHero + 1}</span>
-                  </div>
-                  <p className="text-sm text-white/70 leading-relaxed mt-8">Coalesce connects strategy, design, technology and automation into one customer journey.</p>
-                  <div className="flex flex-wrap gap-2 mt-6">{heroSlides[activeHero].tags.map(tag => <span key={tag} className="rounded-full bg-white/10 border border-white/10 px-3 py-2 text-[9px] uppercase tracking-widest font-bold">{tag}</span>)}</div>
                 </div>
               </div>
             </div>
@@ -204,7 +192,7 @@ export default function App() {
               </div>
               <div className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/50">01 — 04 / Digital transformation</div>
             </div>
-          </div>
+          </div></div>
         </section>
 
         <section className="border-y border-black/10 bg-white py-5 overflow-hidden" aria-label="Coalesce services ticker"><div className="animate-marquee"><div className="flex shrink-0 gap-10 whitespace-nowrap pr-10 text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-500"><span>Websites</span><span>•</span><span>Applications</span><span>•</span><span>Automation</span><span>•</span><span>Lead Acquisition</span><span>•</span><span>Social Media</span><span>•</span><span>Digital Marketing</span><span>•</span><span>Brand Systems</span><span>•</span><span>AI Workflows</span></div><div className="flex shrink-0 gap-10 whitespace-nowrap pr-10 text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-500" aria-hidden="true"><span>Websites</span><span>•</span><span>Applications</span><span>•</span><span>Automation</span><span>•</span><span>Lead Acquisition</span><span>•</span><span>Social Media</span><span>•</span><span>Digital Marketing</span><span>•</span><span>Brand Systems</span><span>•</span><span>AI Workflows</span></div></div></section>
