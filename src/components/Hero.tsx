@@ -30,7 +30,10 @@ export function Hero({ onContact, onExplore }: HeroProps) {
             </div>
             <div className="flex min-h-[34rem] sm:min-h-[36rem] lg:min-h-[37rem] flex-col items-center justify-center">
               <div className="flex min-h-[11rem] sm:min-h-[13rem] lg:min-h-[15rem] items-center justify-center">
-                <h1 key={slide.eyebrow} className="font-antonio font-bold uppercase text-[15vw] sm:text-[10vw] lg:text-[8.25rem] leading-[0.88] tracking-[-0.045em] max-w-[11ch] break-words animate-hero-content">{slide.title}</h1>
+                <h1 key={slide.eyebrow} className="font-antonio font-bold uppercase text-[15vw] sm:text-[10vw] lg:text-[8.25rem] leading-[0.88] tracking-[-0.045em] max-w-[11ch] break-words animate-hero-content">
+                  <span className="block">{slide.title.line1}</span>
+                  <span className={`block ${slide.accentClass}`}>{slide.title.line2}</span>
+                </h1>
               </div>
               <p key={slide.body} className="mt-6 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed animate-hero-content">{slide.body}</p>
               <ul className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl" aria-label="Capabilities">
