@@ -139,16 +139,16 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f3f3f3] text-[#111] font-poppins overflow-x-hidden">
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-6xl rounded-full bg-white/90 backdrop-blur-xl border border-black/10 shadow-lg px-5 py-2.5">
-        <div className="flex items-center justify-center gap-6 sm:gap-8">
-          <button onClick={() => go('top')} className="font-antonio font-bold text-2xl tracking-tight leading-none flex items-center justify-center">COALESCE<span className="text-neutral-400">.</span></button>
-          <div className="hidden md:flex h-9 items-center justify-center gap-7 text-[11px] uppercase tracking-[0.14em] font-bold leading-none">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-6xl rounded-full bg-white/90 backdrop-blur-xl border border-black/10 shadow-lg px-5 py-3">
+        <div className="flex h-10 items-center justify-center gap-6 sm:gap-8">
+          <button onClick={() => go('top')} className="font-antonio font-bold text-2xl tracking-tight leading-none flex items-center justify-center h-10">COALESCE<span className="text-neutral-400">.</span></button>
+          <div className="hidden md:flex h-10 items-center justify-center gap-7 text-[11px] uppercase tracking-[0.14em] font-bold leading-none">
             <button onClick={() => go('services')}>Services</button>
             <button onClick={() => go('journey')}>How it works</button>
             <button onClick={() => go('pricing')}>Pricing</button>
             <button onClick={() => go('work')}>Why Coalesce</button>
           </div>
-          <button onClick={() => openContact()} className="hidden md:flex h-9 items-center justify-center gap-2 bg-black text-white rounded-full px-5 text-[11px] font-bold uppercase tracking-widest leading-none">Start a project <ArrowUpRight size={14}/></button>
+          <button onClick={() => openContact()} className="hidden md:flex h-10 items-center justify-center gap-2 bg-black text-white rounded-full px-5 text-[11px] font-bold uppercase tracking-widest leading-none">Start a project <ArrowUpRight size={14}/></button>
           <button className="md:hidden absolute right-5" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">{menuOpen ? <X/> : <Menu/>}</button>
         </div>
         {menuOpen && <div className="md:hidden pt-5 pb-2 grid justify-items-center gap-4 text-sm font-bold uppercase tracking-widest"><button onClick={() => go('services')}>Services</button><button onClick={() => go('journey')}>How it works</button><button onClick={() => go('pricing')}>Pricing</button><button onClick={() => openContact()}>Start a project</button></div>}
