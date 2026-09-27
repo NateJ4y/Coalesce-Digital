@@ -117,7 +117,8 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const nodes = document.querySelectorAll('.float-on-scroll');
+    const nodes = document.querySelectorAll('button, a');
+    nodes.forEach((node) => node.classList.add('float-on-scroll'));
     if (!('IntersectionObserver' in window)) {
       nodes.forEach((node) => node.classList.add('is-floating'));
       return;
