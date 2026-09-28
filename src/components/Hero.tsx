@@ -7,6 +7,8 @@ type HeroProps = { onContact: () => void; onExplore: () => void };
 export function Hero({ onContact, onExplore }: HeroProps) {
   const [active, setActive] = useState(0);
   const slide = heroSlides[active];
+  // Hero tags are intentionally scoped to the active slide. Never derive this cloud from the global services array.
+  const visibleTags = slide.tags.filter((tag, index, tags) => tags.indexOf(tag) === index);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -37,7 +39,7 @@ export function Hero({ onContact, onExplore }: HeroProps) {
               </div>
               <p key={slide.body} className="mt-6 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed animate-hero-content">{slide.body}</p>
               <ul key={slide.eyebrow} className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl animate-hero-item" aria-label="Capabilities">
-                {slide.tags.map((tag) => <li key={tag} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold">{tag}</li>)}
+                {visibleTags.map((tag) => <li key={tag} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold">{tag}</li>)}
               </ul>
               <div key={slide.eyebrow} className="flex flex-wrap justify-center gap-3 mt-8 animate-hero-item">
                 <button type="button" onClick={onContact} className="levitate bg-white text-black rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16} /></button>
