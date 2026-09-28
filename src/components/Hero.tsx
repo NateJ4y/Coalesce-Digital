@@ -7,8 +7,14 @@ type HeroProps = { onContact: () => void; onExplore: () => void };
 export function Hero({ onContact, onExplore }: HeroProps) {
   const [active, setActive] = useState(0);
   const slide = heroSlides[active];
-  // Hero tags are intentionally scoped to the active slide. Never derive this cloud from the global services array.
-  const visibleTags = slide.tags.filter((tag, index, tags) => tags.indexOf(tag) === index);
+  // Keep the hero tag cloud strictly slide-scoped. It must never read from the global services/features array.
+  const heroTagsBySlide: Record<string, string[]> = {
+    '01 / WEB DEVELOPMENT': ['Websites', 'Applications', 'Conversion'],
+    '02 / AUTOMATION': ['Workflows', 'Lead capture', 'AI'],
+    '03 / SOCIAL MEDIA': ['Content', 'Social management', 'Growth'],
+    '04 / DIGITAL DESIGN + MARKETING': ['Brand systems', 'Design', 'Marketing'],
+  };
+  const visibleTags = heroTagsBySlide[slide.eyebrow] ?? [];
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
