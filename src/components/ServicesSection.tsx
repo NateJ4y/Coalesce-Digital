@@ -15,16 +15,23 @@ export function ServicesSection({ onContact }: { onContact: (service?: string) =
         <span className="flex items-center gap-4 sm:gap-7"><span className="text-xs text-neutral-400 font-bold">{item.number}</span><Icon className="hidden sm:block" size={25} aria-hidden="true" /><span><span className="font-antonio font-bold uppercase text-3xl sm:text-5xl lg:text-6xl leading-[0.95] block">{item.title}</span><span className="text-sm text-neutral-500 mt-1 block">{item.short}</span></span></span>
         <ChevronDown aria-hidden="true" className={`shrink-0 transition-transform ${active ? 'rotate-180' : ''}`} />
       </button>
-      {active && <div id={`service-panel-${index}`} className={`grid lg:grid-cols-12 gap-8 pt-7 sm:pt-8 pl-0 sm:pl-14 lg:pl-16 items-center`}>
+      {active && <div id={`service-panel-${index}`} className="grid lg:grid-cols-12 gap-8 pt-7 sm:pt-8 pl-0 sm:pl-14 lg:pl-16 items-center">
         <div className={`lg:col-span-7 min-w-0 ${imageFirst ? 'lg:order-2' : 'lg:order-1'}`}>
           <p className="text-lg text-neutral-600 leading-relaxed max-w-2xl">{item.description}</p>
           <div className="mt-7 flex flex-wrap gap-2">{item.features.map(f=><span key={f} className="px-3 py-2 rounded-full bg-neutral-100 text-[10px] uppercase tracking-widest font-bold">{f}</span>)}</div>
           <button type="button" onClick={()=>onContact(item.title)} className="levitate mt-8 bg-black text-white rounded-full px-6 py-3 text-[11px] font-bold uppercase tracking-widest">Talk about {item.title} <ArrowUpRight className="inline ml-2" size={14} /></button>
         </div>
         <div className={`lg:col-span-5 ${imageFirst ? 'lg:order-1' : 'lg:order-2'}`}>
-          <div className="overflow-hidden rounded-3xl bg-neutral-100 aspect-[16/10] shadow-sm">
+          {item.link ? <a href={item.link} target="_blank" rel="noopener noreferrer" aria-label={`Open ${item.title} project preview`} className="group block focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 rounded-3xl">
+            <div className="relative overflow-hidden rounded-3xl bg-neutral-100 aspect-[16/10] shadow-sm">
+              <img src={item.image} alt={item.imageAlt} loading="lazy" className="block w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]" />
+              <span className="absolute inset-x-4 bottom-4 flex items-center justify-between rounded-full bg-black/80 px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm">
+                <span>View project</span><ArrowUpRight size={14} aria-hidden="true" />
+              </span>
+            </div>
+          </a> : <div className="overflow-hidden rounded-3xl bg-neutral-100 aspect-[16/10] shadow-sm">
             <img src={item.image} alt={item.imageAlt} loading="lazy" className="block w-full h-full object-cover object-center" />
-          </div>
+          </div>}
           <div className="mt-5 rounded-3xl bg-neutral-100 p-6 sm:p-7">
             <p className="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Starting investment</p>
             <p className="font-antonio font-bold text-5xl mt-2">{item.price}</p>
