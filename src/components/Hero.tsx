@@ -25,7 +25,7 @@ export function Hero({ onContact, onExplore }: HeroProps) {
       <div className="relative z-10 w-full max-w-[80rem] mx-auto text-white text-center">
         <div className="flex justify-center">
           <div className="w-full max-w-5xl min-w-0">
-            <div className="inline-flex items-center justify-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <div key={slide.eyebrow} className="inline-flex items-center justify-center gap-3 border border-white/20 bg-white/10 backdrop-blur-md rounded-full px-4 py-2 mb-7 text-[10px] font-bold uppercase tracking-[0.2em] animate-hero-item">
               <span className="w-2 h-2 rounded-full bg-[#b3de4f] animate-pulse" aria-hidden="true" />{slide.eyebrow}
             </div>
             <div className="flex min-h-[34rem] sm:min-h-[36rem] lg:min-h-[37rem] flex-col items-center justify-center">
@@ -36,10 +36,10 @@ export function Hero({ onContact, onExplore }: HeroProps) {
                 </h1>
               </div>
               <p key={slide.body} className="mt-6 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed animate-hero-content">{slide.body}</p>
-              <ul className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl" aria-label="Capabilities">
+              <ul key={slide.eyebrow} className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl animate-hero-item" aria-label="Capabilities">
                 {slide.tags.map((tag) => <li key={tag} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold">{tag}</li>)}
               </ul>
-              <div className="flex flex-wrap justify-center gap-3 mt-8">
+              <div key={slide.eyebrow} className="flex flex-wrap justify-center gap-3 mt-8 animate-hero-item">
                 <button type="button" onClick={onContact} className="levitate bg-white text-black rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16} /></button>
                 <button type="button" onClick={onExplore} className="levitate border border-white/30 bg-white/5 backdrop-blur rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest">Explore services</button>
               </div>
