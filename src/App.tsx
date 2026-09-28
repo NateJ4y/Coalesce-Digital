@@ -7,6 +7,7 @@ import { Navbar } from './components/Navbar';
 import { PricingSection } from './components/PricingSection';
 import { ServicesSection } from './components/ServicesSection';
 import { WhySection } from './components/WhySection';
+import { DetailServiceSection, detailServices } from './components/DetailServiceSection';
 
 const ticker = ['Websites','Applications','Automation','Lead Acquisition','Social Media','Digital Marketing','Brand Systems','AI Workflows'];
 
@@ -25,7 +26,7 @@ export default function App() {
     <div className="min-h-screen overflow-x-hidden bg-[#f3f3f3] font-poppins text-[#111]">
       <Navbar onContact={() => openContact()} />
       <main id="top">
-        <Hero onContact={() => openContact()} onExplore={() => go('services')} />
+        <Hero onContact={() => openContact()} onExplore={() => go('services')} onTagClick={go} />
         <section className="overflow-hidden border-y border-black/10 bg-white py-5" aria-label="Coalesce services">
           <div className="animate-marquee">
             {[0,1].map((copy) => <div key={copy} className="flex shrink-0 gap-10 whitespace-nowrap pr-10 text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-500" aria-hidden={copy === 1}>
@@ -33,10 +34,22 @@ export default function App() {
             </div>)}
           </div>
         </section>
+        <DetailServiceSection service={detailServices[0]} onContact={openContact} />
         <ServicesSection onContact={openContact} />
+        <DetailServiceSection service={detailServices[3]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[6]} onContact={openContact} />
         <JourneySection onContact={openContact} />
+        <DetailServiceSection service={detailServices[1]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[8]} onContact={openContact} />
         <PricingSection onContact={openContact} />
+        <DetailServiceSection service={detailServices[4]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[9]} onContact={openContact} />
         <WhySection onContact={openContact} />
+        <DetailServiceSection service={detailServices[2]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[5]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[7]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[10]} onContact={openContact} />
+        <DetailServiceSection service={detailServices[11]} onContact={openContact} />
       </main>
       <footer className="bg-black px-5 pt-16 pb-8 text-white sm:px-8">
         <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-4 lg:gap-10">
