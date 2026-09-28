@@ -1,54 +1,77 @@
-import { ArrowRight, Check, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, ChevronRight, LayoutDashboard, Megaphone, MousePointerClick, Sparkles, Workflow, Zap } from 'lucide-react';
 
-export type DetailService = {
-  id: string;
-  title: string;
-  price: string;
-  description: string;
-  value: string[];
-  image: string;
-  accent: string;
-};
+type Props = { onContact: (service?: string) => void; service: { id: string } };
+const A = ({ id }: { id: string }) => <span id={id} className="absolute -top-24" aria-hidden="true" />;
 
-export const detailServices: DetailService[] = [
-  { id: 'websites', title: 'Websites', price: 'From R1,500', description: 'A high-trust digital home that answers the questions your customer has before they ever call you.', value: ['Mobile-first experience', 'Clear conversion paths', 'Fast, credible presentation'], image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#b3de4f]' },
-  { id: 'applications', title: 'Applications', price: 'From R5,000', description: 'Turn a website into a useful product with portals, calculators, dashboards, bookings or custom workflows.', value: ['Purpose-built user journeys', 'Responsive interfaces', 'Built around your process'], image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#5b8cff]' },
-  { id: 'conversion', title: 'Conversion', price: 'From R1,500', description: 'Remove friction between attention and action so more of the people who visit know exactly what to do next.', value: ['Sharper CTAs', 'Trust-building structure', 'Less confusion, more action'], image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#b3de4f]' },
-  { id: 'workflows', title: 'Workflows', price: 'From R2,500', description: 'Connect the moving parts of your business so information, tasks and follow-ups flow without constant manual chasing.', value: ['Connected tools', 'Automated handoffs', 'Fewer repetitive tasks'], image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#5b8cff]' },
-  { id: 'lead-capture', title: 'Lead Capture', price: 'From R1,500', description: 'Give interested people a frictionless path to enquire, book, call or start a conversation.', value: ['Smart forms', 'WhatsApp-ready CTAs', 'Lead routing'], image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#b3de4f]' },
-  { id: 'ai', title: 'AI', price: 'From R2,500', description: 'Use AI where it creates leverage — answering questions, organizing information and helping repetitive work move faster.', value: ['AI assistants', 'Knowledge-based agents', 'Human-approved automation'], image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#a855f7]' },
-  { id: 'content', title: 'Content', price: 'From R1,000', description: 'Create a consistent stream of useful, recognizable content that gives people a reason to stop, understand and remember you.', value: ['Content direction', 'Social creatives', 'Reusable content systems'], image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#b3de4f]' },
-  { id: 'social-management', title: 'Social Management', price: 'From R1,500/mo', description: 'Keep your brand active and intentional without making you the person who has to remember every post.', value: ['Planning & publishing', 'Community touchpoints', 'Monthly reporting'], image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#5b8cff]' },
-  { id: 'growth', title: 'Growth', price: 'From R2,500', description: 'Build a digital growth loop where visibility, leads, conversion and follow-up improve together instead of in isolation.', value: ['Growth opportunities', 'Performance feedback', 'Connected digital systems'], image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#b3de4f]' },
-  { id: 'brand-systems', title: 'Brand Systems', price: 'From R1,000', description: 'Turn scattered visuals into a recognizable system that makes your business look deliberate, consistent and ready for the next level.', value: ['Visual direction', 'Brand consistency', 'Reusable guidelines'], image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#a855f7]' },
-  { id: 'design', title: 'Design', price: 'From R600', description: 'Make the message easier to understand and harder to ignore with sharp creative built for the platform it lives on.', value: ['Campaign graphics', 'Presentations & collateral', 'Digital-first creative'], image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#5b8cff]' },
-  { id: 'marketing', title: 'Marketing', price: 'From R1,000', description: 'Put your offer in the right places with a clearer message, stronger creative and a digital route toward customers.', value: ['Campaign strategy', 'SEO foundations', 'Digital acquisition support'], image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=1400&q=85', accent: 'text-[#b3de4f]' },
+export const detailServices = [
+  { id: 'websites' }, { id: 'workflows' }, { id: 'applications' },
+  { id: 'content' }, { id: 'brand-systems' }, { id: 'growth' },
 ];
 
-export function DetailServiceSection({ service, onContact }: { service: DetailService; onContact: (name?: string) => void }) {
-  return <section id={service.id} className="scroll-mt-8 px-5 py-16 sm:px-8 sm:py-20 lg:py-24">
-    <div className="mx-auto grid max-w-[80rem] items-center gap-10 lg:grid-cols-12 lg:gap-14">
-      <div className="lg:col-span-7">
-        <p className={`text-[10px] font-bold uppercase tracking-[0.22em] ${service.accent}`}>Coalesce / {service.title}</p>
-        <h2 className="mt-3 max-w-3xl font-antonio text-5xl font-bold uppercase leading-[0.9] sm:text-7xl">{service.title}<span className="text-neutral-300">.</span></h2>
-        <p className="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-600 sm:text-xl">{service.description}</p>
-        <div className="mt-7 grid gap-3 sm:grid-cols-3">
-          {service.value.map(point => <div key={point} className="rounded-2xl border border-black/10 bg-white p-4"><Check size={16} className="mb-3" aria-hidden="true" /><p className="text-xs font-bold uppercase tracking-wider">{point}</p></div>)}
-        </div>
-        <div className="mt-8 flex flex-wrap items-center gap-4">
-          <span className="font-antonio text-4xl font-bold">{service.price}</span>
-          <button type="button" onClick={() => onContact(service.title)} className="levitate inline-flex items-center gap-2 rounded-full bg-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white">Make this happen <ArrowRight size={14} /></button>
-        </div>
+export function DetailServiceSection({ service, onContact }: Props) {
+  switch (service.id) {
+    case 'websites': return <Website onContact={onContact} />;
+    case 'workflows': return <Automation onContact={onContact} />;
+    case 'applications': return <Apps onContact={onContact} />;
+    case 'content': return <Social onContact={onContact} />;
+    case 'brand-systems': return <Brand onContact={onContact} />;
+    default: return <Growth onContact={onContact} />;
+  }
+}
+
+function Website({ onContact }: Omit<Props,'service'>) {
+  return <section id="websites" className="relative bg-black px-5 py-20 text-white sm:px-8 sm:py-28">
+    <A id="applications"/><A id="conversion"/>
+    <div className="mx-auto grid max-w-[80rem] gap-12 lg:grid-cols-12 lg:items-end">
+      <div className="lg:col-span-7"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#b3de4f]">01 / Web & Apps</p>
+        <h2 className="mt-4 font-antonio text-6xl font-bold uppercase leading-[.84] sm:text-8xl lg:text-[8.5rem]">Turn clicks<br/><span className="text-[#b3de4f]">into customers.</span></h2>
+        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-white/60 sm:text-xl">Your website is often the first salesperson your business has. We build it to explain what you do, create trust and make the next step obvious.</p>
+        <div className="mt-8 flex flex-wrap gap-2">{['Mobile-first','Conversion-focused','Built around your offer'].map(x=><span key={x} className="rounded-full border border-white/15 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-white/70">{x}</span>)}</div>
+        <div className="mt-9 flex flex-wrap items-center gap-5"><span className="font-antonio text-4xl font-bold">From R1,500</span><button onClick={()=>onContact('Websites')} className="levitate rounded-full bg-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-black">Build my website <ArrowRight className="ml-2 inline" size={14}/></button></div>
       </div>
-      <div className="relative lg:col-span-5">
-        <div className="overflow-hidden rounded-[2rem] bg-neutral-200 shadow-sm">
-          <img src={service.image} alt={service.title} loading="lazy" className="block aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
-        </div>
-        <div className="absolute -bottom-5 -left-3 rounded-2xl border border-black/10 bg-white p-4 shadow-xl sm:-left-5">
-          <Sparkles size={16} aria-hidden="true" />
-          <p className="mt-2 text-[9px] font-bold uppercase tracking-widest text-neutral-500">Built for action</p>
-        </div>
+      <div className="lg:col-span-5"><div className="overflow-hidden rounded-[2rem]"><img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=1400&q=85" alt="Modern website interface" loading="lazy" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-105"/></div>
+        <div className="mt-4 grid grid-cols-2 gap-3"><div className="rounded-2xl bg-white/10 p-5"><MousePointerClick size={18}/><p className="mt-5 text-xs font-bold uppercase tracking-wider">Clear next step</p></div><div className="rounded-2xl bg-[#b3de4f] p-5 text-black"><LayoutDashboard size={18}/><p className="mt-5 text-xs font-bold uppercase tracking-wider">Built to grow</p></div></div>
       </div>
     </div>
   </section>;
+}
+
+function Automation({ onContact }: Omit<Props,'service'>) {
+  return <section id="workflows" className="relative border-y border-black/10 bg-white px-5 py-20 sm:px-8 sm:py-28">
+    <A id="lead-capture"/><A id="ai"/>
+    <div className="mx-auto max-w-[80rem]"><div className="max-w-3xl"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#5b8cff]">02 / Automation</p><h2 className="mt-3 font-antonio text-6xl font-bold uppercase leading-[.88] sm:text-8xl">Stop doing<br/><span className="text-[#5b8cff]">the same work twice.</span></h2><p className="mt-7 text-lg leading-relaxed text-neutral-600 sm:text-xl">Automation means the right thing happens without someone having to remember to make it happen.</p></div>
+      <div className="mt-14 grid gap-4 lg:grid-cols-4">{[['01','Customer enquires','A form, WhatsApp message or booking starts the process.'],['02','Lead is captured','The right information lands where your team needs it.'],['03','System responds','Notifications, email or AI can handle the next step.'],['04','Team follows through','People focus on decisions and relationships, not admin.']].map(([n,t,d])=><div key={n} className="rounded-3xl border border-black/10 bg-[#f3f3f3] p-6"><span className="text-[10px] font-bold text-neutral-400">{n}</span><Workflow className="mt-10" size={20}/><h3 className="mt-5 font-antonio text-3xl font-bold uppercase">{t}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-500">{d}</p></div>)}</div>
+      <div className="mt-5 flex flex-col justify-between gap-6 rounded-3xl bg-black p-7 text-white sm:p-9 lg:flex-row lg:items-center"><div><p className="text-[10px] font-bold uppercase tracking-widest text-[#5b8cff]">Workflows • Lead Capture • AI</p><p className="mt-3 max-w-2xl font-antonio text-3xl font-bold uppercase sm:text-4xl">Connect the moving parts. Let the system carry the repetition.</p></div><div className="shrink-0"><p className="font-antonio text-4xl font-bold">From R1,500</p><button onClick={()=>onContact('Automation')} className="levitate mt-4 rounded-full bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-black">Automate a process <ArrowRight className="ml-2 inline" size={14}/></button></div></div>
+    </div>
+  </section>;
+}
+
+function Apps({ onContact }: Omit<Props,'service'>) {
+  return <section id="applications" className="relative px-5 py-20 sm:px-8 sm:py-28"><A id="conversion"/>
+    <div className="mx-auto grid max-w-[80rem] gap-12 lg:grid-cols-12 lg:items-center"><div className="lg:col-span-5"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#5b8cff]">03 / Digital Products</p><h2 className="mt-4 font-antonio text-6xl font-bold uppercase leading-[.86] sm:text-8xl">More than<br/><span className="text-[#5b8cff]">a website.</span></h2><p className="mt-7 text-lg leading-relaxed text-neutral-600">Sometimes your business needs a tool, not another page. We build focused web applications around a real customer or team problem.</p>
+      <div className="mt-8 space-y-3">{['Client portals','Bookings & calculators','Dashboards & internal tools','Custom customer journeys'].map(x=><div key={x} className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm"><Check size={16}/><span className="text-sm font-bold">{x}</span></div>)}</div><button onClick={()=>onContact('Applications')} className="levitate mt-8 rounded-full bg-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white">Build a digital tool <ArrowRight className="ml-2 inline" size={14}/></button></div>
+      <div className="lg:col-span-7"><div className="grid gap-4 sm:grid-cols-2"><div className="rounded-[2rem] bg-black p-7 text-white sm:translate-y-10"><LayoutDashboard size={22}/><p className="mt-16 font-antonio text-4xl font-bold uppercase">Dashboard</p><p className="mt-2 text-sm text-white/50">See what matters in one place.</p></div><div className="overflow-hidden rounded-[2rem] bg-neutral-200"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&w=1200&q=85" alt="Web application interface" loading="lazy" className="h-full min-h-64 w-full object-cover"/></div></div><div className="mt-4 rounded-[2rem] bg-[#5b8cff] p-7 text-white"><p className="text-[10px] font-bold uppercase tracking-widest">Conversion</p><p className="mt-2 font-antonio text-4xl font-bold uppercase">Less friction. More action.</p><p className="mt-2 text-sm text-white/75">Sharper calls-to-action and clearer journeys make the next step easier to understand.</p><p className="mt-6 font-antonio text-3xl font-bold">From R1,500</p></div></div>
+    </div>
+  </section>;
+}
+
+function Social({ onContact }: Omit<Props,'service'>) {
+  return <section id="content" className="relative border-y border-black/10 bg-[#e9e9e9] px-5 py-20 sm:px-8 sm:py-28"><A id="social-management"/><A id="growth"/>
+    <div className="mx-auto max-w-[80rem]"><div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><div><p className="text-[10px] font-bold uppercase tracking-[.25em] text-neutral-500">04 / Social</p><h2 className="mt-3 font-antonio text-6xl font-bold uppercase leading-[.86] sm:text-8xl">Get seen.<br/><span className="text-neutral-500">Stay remembered.</span></h2></div><p className="max-w-md text-lg leading-relaxed text-neutral-600">Content and social management work better together: one creates the message, the other keeps the brand present.</p></div>
+      <div className="mt-12 grid gap-4 lg:grid-cols-3"><div className="overflow-hidden rounded-[2rem] bg-white lg:col-span-2"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1400&q=85" alt="Social media content" loading="lazy" className="aspect-[16/8] w-full object-cover"/></div><div className="rounded-[2rem] bg-black p-7 text-white"><Megaphone size={20}/><p className="mt-16 font-antonio text-4xl font-bold uppercase">Content</p><p className="mt-2 text-sm text-white/50">Strategy, creative direction and reusable content.</p></div><div className="rounded-[2rem] bg-white p-7"><Sparkles size={20}/><p className="mt-16 font-antonio text-4xl font-bold uppercase">Management</p><p className="mt-2 text-sm text-neutral-500">Planning, publishing, community and reporting.</p></div><div className="rounded-[2rem] bg-[#b3de4f] p-7"><Zap size={20}/><p className="mt-16 font-antonio text-4xl font-bold uppercase">Growth</p><p className="mt-2 text-sm">Use attention, leads and performance to improve the next move.</p></div></div>
+      <div className="mt-6 flex flex-wrap items-center justify-between gap-5 rounded-3xl border border-black/10 bg-white p-6 sm:p-8"><p className="font-antonio text-3xl font-bold uppercase">A social presence people can recognize.</p><div className="flex items-center gap-5"><span className="font-antonio text-3xl font-bold">From R1,000</span><button onClick={()=>onContact('Social Media')} className="levitate rounded-full bg-black px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-white">Build the system <ArrowRight className="ml-2 inline" size={14}/></button></div></div>
+    </div>
+  </section>;
+}
+
+function Brand({ onContact }: Omit<Props,'service'>) {
+  return <section id="brand-systems" className="relative bg-white px-5 py-20 sm:px-8 sm:py-28"><A id="design"/><A id="marketing"/>
+    <div className="mx-auto grid max-w-[80rem] gap-12 lg:grid-cols-12 lg:items-center"><div className="lg:col-span-6"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#a855f7]">05 / Brand + Marketing</p><h2 className="mt-3 font-antonio text-6xl font-bold uppercase leading-[.86] sm:text-8xl">Look like<br/><span className="text-[#a855f7]">the business you want.</span></h2><p className="mt-7 max-w-xl text-lg leading-relaxed text-neutral-600">Your logo is only one piece. We bring visual identity, content, design and marketing together so the business feels deliberate wherever customers find it.</p><div className="mt-8 grid gap-3 sm:grid-cols-3">{['Brand systems','Graphic design','Digital marketing'].map((x,i)=><div key={x} className="rounded-2xl border border-black/10 p-5"><span className="text-[10px] font-bold text-neutral-400">0{i+1}</span><p className="mt-8 text-xs font-bold uppercase tracking-wider">{x}</p></div>)}</div><button onClick={()=>onContact('Brand & Marketing')} className="levitate mt-8 rounded-full bg-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white">Sharpen the brand <ArrowRight className="ml-2 inline" size={14}/></button></div>
+      <div className="lg:col-span-6"><div className="overflow-hidden rounded-[2rem]"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1400&q=85" alt="Brand identity and graphic design materials" loading="lazy" className="aspect-[5/4] w-full object-cover"/></div><div className="mt-4 flex items-center justify-between rounded-3xl bg-[#f3f3f3] p-6"><div><p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Design + marketing</p><p className="mt-2 font-antonio text-3xl font-bold uppercase">From R600</p></div><Sparkles size={28}/></div></div>
+    </div>
+  </section>;
+}
+
+function Growth({ onContact }: Omit<Props,'service'>) {
+  return <section id="growth" className="relative bg-black px-5 py-20 text-white sm:px-8 sm:py-28"><div className="mx-auto max-w-[80rem]"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#b3de4f]">06 / The bigger picture</p><div className="mt-4 grid gap-12 lg:grid-cols-12 lg:items-end"><h2 className="font-antonio text-6xl font-bold uppercase leading-[.84] sm:text-8xl lg:col-span-8 lg:text-[8.5rem]">Don't build<br/><span className="text-[#b3de4f]">in pieces.</span></h2><p className="text-lg leading-relaxed text-white/55 lg:col-span-4">Your website, content, marketing, lead capture and automation should work together. That is where digital starts becoming a growth system.</p></div><div className="mt-14 grid gap-3 md:grid-cols-5">{['Attention','Interest','Lead','Conversion','Follow-up'].map((x,i)=><div key={x} className="rounded-2xl border border-white/10 p-5"><span className="text-[10px] text-white/35">0{i+1}</span><p className="mt-10 font-antonio text-3xl font-bold uppercase">{x}</p>{i<4&&<ChevronRight className="mt-5 hidden md:block text-[#b3de4f]" size={18}/>}</div>)}</div><div className="mt-5 flex flex-col justify-between gap-6 rounded-3xl bg-[#b3de4f] p-7 text-black sm:p-9 lg:flex-row lg:items-center"><div><p className="text-[10px] font-bold uppercase tracking-widest">Growth systems</p><p className="mt-2 font-antonio text-4xl font-bold uppercase">Start with the layer your business needs next.</p></div><div><p className="font-antonio text-4xl font-bold">From R2,500</p><button onClick={()=>onContact('Digital Growth')} className="levitate mt-4 rounded-full bg-black px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white">Plan the next move <ArrowRight className="ml-2 inline" size={14}/></button></div></div></div></section>;
 }
