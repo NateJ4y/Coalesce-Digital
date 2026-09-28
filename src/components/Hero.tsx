@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { heroSlides } from '../data/site';
 
-type HeroProps = { onContact: () => void; onExplore: () => void };
+type HeroProps = { onContact: () => void; onExplore: () => void; onTagClick: (id: string) => void };
 
-export function Hero({ onContact, onExplore }: HeroProps) {
+export function Hero({ onContact, onExplore, onTagClick }: HeroProps) {
   const [active, setActive] = useState(0);
   const slide = heroSlides[active];
   // The hero bubbles are owned by the active slide index — never by the global services array.
@@ -45,7 +45,7 @@ export function Hero({ onContact, onExplore }: HeroProps) {
               </div>
               <p key={slide.body} className="mt-6 max-w-3xl text-base sm:text-lg lg:text-xl text-white/75 leading-relaxed animate-hero-content">{slide.body}</p>
               <ul className="mt-6 flex flex-wrap justify-center gap-2.5 max-w-3xl animate-hero-item" aria-label="Capabilities">
-                {visibleTags.map((tag) => <li key={tag} className="rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold">{tag}</li>)}
+                {visibleTags.map((tag) => <li key={tag}><button type="button" onClick={() => onTagClick(tag === 'Lead capture' ? 'lead-capture' : tag === 'Social management' ? 'social-management' : tag.toLowerCase().replaceAll(' ', '-'))} className="levitate rounded-full bg-white/10 border border-white/15 px-4 py-2 text-[10px] uppercase tracking-widest font-bold text-white transition-colors hover:bg-white hover:text-black">{tag}</button></li>)}
               </ul>
               <div key={slide.eyebrow} className="flex flex-wrap justify-center gap-3 mt-8 animate-hero-item">
                 <button type="button" onClick={onContact} className="levitate bg-white text-black rounded-full px-7 py-4 text-xs font-bold uppercase tracking-widest flex items-center gap-2">Start a project <ArrowRight size={16} /></button>
