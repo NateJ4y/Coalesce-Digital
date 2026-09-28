@@ -7,7 +7,7 @@ import { Navbar } from './components/Navbar';
 import { PricingSection } from './components/PricingSection';
 import { ServicesSection } from './components/ServicesSection';
 import { WhySection } from './components/WhySection';
-import { DetailServiceSection, detailServices } from './components/DetailServiceSection';
+import { DetailServiceSection } from './components/DetailServiceSection';
 
 const ticker = ['Websites','Applications','Automation','Lead Acquisition','Social Media','Digital Marketing','Brand Systems','AI Workflows'];
 
@@ -34,22 +34,16 @@ export default function App() {
             </div>)}
           </div>
         </section>
-        <DetailServiceSection service={detailServices[0]} onContact={openContact} />
+        <DetailServiceSection service={{ id: 'websites' }} onContact={openContact} />
         <ServicesSection onContact={openContact} />
-        <DetailServiceSection service={detailServices[3]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[6]} onContact={openContact} />
+        <DetailServiceSection service={{ id: 'workflows' }} onContact={openContact} />
         <JourneySection onContact={openContact} />
-        <DetailServiceSection service={detailServices[1]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[8]} onContact={openContact} />
+        <DetailServiceSection service={{ id: 'applications' }} onContact={openContact} />
         <PricingSection onContact={openContact} />
-        <DetailServiceSection service={detailServices[4]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[9]} onContact={openContact} />
+        <DetailServiceSection service={{ id: 'content' }} onContact={openContact} />
         <WhySection onContact={openContact} />
-        <DetailServiceSection service={detailServices[2]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[5]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[7]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[10]} onContact={openContact} />
-        <DetailServiceSection service={detailServices[11]} onContact={openContact} />
+        <DetailServiceSection service={{ id: 'brand-systems' }} onContact={openContact} />
+        <DetailServiceSection service={{ id: 'growth' }} onContact={openContact} />
       </main>
       <footer className="bg-black px-5 pt-16 pb-8 text-white sm:px-8">
         <div className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-4 lg:gap-10">
