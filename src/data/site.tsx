@@ -17,6 +17,8 @@ export type Service = {
   icon: LucideIcon;
   features: string[];
   price: string;
+  image: string;
+  imageAlt: string;
 };
 
 export const heroSlides: HeroSlide[] = [
@@ -27,10 +29,10 @@ export const heroSlides: HeroSlide[] = [
 ];
 
 export const services: Service[] = [
-  { number: '01', title: 'Web & Apps', short: 'Build the digital home.', description: 'Websites, landing pages, eCommerce, client portals and web applications designed to turn attention into action.', icon: Code2, features: ['Business websites', 'Landing pages', 'eCommerce / Shopify', 'Web applications', 'UI/UX design', 'WordPress & Elementor'], price: 'From R1,500' },
-  { number: '02', title: 'Automation', short: 'Make the work move itself.', description: 'We connect the tools behind your business so leads, tasks, follow-ups and repetitive work keep moving without manual chasing.', icon: Workflow, features: ['Lead scraping', 'Client acquisition systems', 'Email automation', 'WhatsApp workflows', 'AI agents & chatbots', 'Internal task automation'], price: 'From R2,500' },
-  { number: '03', title: 'Social Media', short: 'Stay visible. Stay relevant.', description: 'Strategy, content and management built around consistent communication, stronger positioning and measurable growth.', icon: Instagram, features: ['Content strategy', 'Social media management', 'Static & carousel design', 'Short-form content', 'Community management', 'Monthly reporting'], price: 'From R1,500/mo' },
-  { number: '04', title: 'Digital Design & Marketing', short: 'Make the brand impossible to ignore.', description: 'Brand systems, creative design and digital marketing that give your business a sharper identity and a clearer route to customers.', icon: Palette, features: ['Brand identity', 'Graphic & content design', 'Digital campaigns', 'Paid media support', 'SEO foundations', 'Marketing strategy'], price: 'From R1,000' },
+  { number: '01', title: 'Web & Apps', short: 'Build the digital home.', description: 'Websites, landing pages, eCommerce, client portals and web applications designed to turn attention into action.', icon: Code2, features: ['Business websites', 'Landing pages', 'eCommerce / Shopify', 'Web applications', 'UI/UX design', 'WordPress & Elementor'], price: 'From R1,500', image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Flifestyle-seat-covers.vercel.app%2F?w=1400', imageAlt: 'Preview of the Lifestyle Seat Covers website built by Coalesce Digital' },
+  { number: '02', title: 'Automation', short: 'Make the work move itself.', description: 'We connect the tools behind your business so leads, tasks, follow-ups and repetitive work keep moving without manual chasing.', icon: Workflow, features: ['Lead scraping', 'Client acquisition systems', 'Email automation', 'WhatsApp workflows', 'AI agents & chatbots', 'Internal task automation'], price: 'From R2,500', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=85', imageAlt: 'Automation and workflow systems on a laptop' },
+  { number: '03', title: 'Social Media', short: 'Stay visible. Stay relevant.', description: 'Strategy, content and management built around consistent communication, stronger positioning and measurable growth.', icon: Instagram, features: ['Content strategy', 'Social media management', 'Static & carousel design', 'Short-form content', 'Community management', 'Monthly reporting'], price: 'From R1,500/mo', image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=1400&q=85', imageAlt: 'Social media content and publishing interface' },
+  { number: '04', title: 'Digital Design & Marketing', short: 'Make the brand impossible to ignore.', description: 'Brand systems, creative design and digital marketing that give your business a sharper identity and a clearer route to customers.', icon: Palette, features: ['Brand identity', 'Graphic & content design', 'Digital campaigns', 'Paid media support', 'SEO foundations', 'Marketing strategy'], price: 'From R1,000', image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1400&q=85', imageAlt: 'Digital design and brand identity work on a creative desk' },
 ];
 
 export const journey = [
