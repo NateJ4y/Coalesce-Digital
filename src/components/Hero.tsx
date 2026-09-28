@@ -16,9 +16,9 @@ export function Hero({ onContact, onExplore }: HeroProps) {
   }, []);
 
   return (
-    <section className="relative min-h-[100svh] flex items-center px-5 sm:px-8 pt-28 sm:pt-32 pb-12 sm:pb-16 overflow-hidden" aria-label="Coalesce Digital introduction">
-      <div className="absolute inset-0" aria-hidden="true">
-        <img key={slide.image} src={slide.image} alt="" fetchPriority={active === 0 ? 'high' : 'auto'} className="w-full h-full object-cover scale-105 animate-hero-image" />
+    <section className="relative min-h-[100svh] w-full flex items-center px-5 sm:px-8 pt-28 sm:pt-32 pb-12 sm:pb-16 overflow-hidden" aria-label="Coalesce Digital introduction">
+      <div className="absolute inset-0 w-full h-full overflow-hidden" aria-hidden="true">
+        <img key={slide.image} src={slide.image} alt="" fetchPriority={active === 0 ? 'high' : 'auto'} className="absolute inset-0 block w-full h-full max-w-none object-cover object-center scale-105 animate-hero-image" />
         <div className="absolute inset-0 bg-black/65" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
       </div>
