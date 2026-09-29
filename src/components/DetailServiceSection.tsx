@@ -10,10 +10,12 @@ export const detailServices = [
 
 const automationApps = [
   ['Instagram', 'instagram'], ['WhatsApp', 'whatsapp'], ['Google Calendar', 'googlecalendar'],
-  ['Gmail', 'gmail'], ['n8n', 'n8n'], ['Claude', 'anthropic'], ['ChatGPT', 'openai'],
-  ['Slack', 'slack'], ['LinkedIn', 'linkedin'], ['Google Maps', 'googlemaps'],
-  ['Telegram', 'telegram'], ['Facebook', 'facebook'], ['Google Sheets', 'googlesheets'],
-  ['Airtable', 'airtable'], ['Notion', 'notion'],
+  ['Gmail', 'gmail'], ['n8n', 'n8n'], ['Claude', 'anthropic'],
+  ['ChatGPT', 'https://icons.iconarchive.com/icons/simpleicons-team/simple/128/openai-icon.png'],
+  ['Slack', 'https://icons.iconarchive.com/icons/simpleicons-team/simple/128/slack-icon.png'],
+  ['LinkedIn', 'https://icons.iconarchive.com/icons/simpleicons-team/simple/128/linkedin-icon.png'],
+  ['Google Maps', 'googlemaps'], ['Telegram', 'telegram'], ['Facebook', 'facebook'],
+  ['Google Sheets', 'googlesheets'], ['Airtable', 'airtable'], ['Notion', 'notion'],
 ];
 
 export function DetailServiceSection({ service, onContact }: Props) {
@@ -66,7 +68,12 @@ function Automation({ onContact }: Omit<Props,'service'>) {
           <div className="flex max-w-xl flex-wrap justify-end gap-2.5 sm:gap-3">
             {automationApps.map(([name, icon]) => (
               <div key={name} title={name} className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-black/10 bg-white p-2.5 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:scale-105 sm:h-14 sm:w-14 sm:p-3">
-                <img src={`https://cdn.simpleicons.org/${icon}`} alt={`${name} logo`} loading="lazy" className="h-full w-full object-contain" />
+                <img
+                  src={icon.startsWith('http') ? icon : `https://cdn.simpleicons.org/${icon}`}
+                  alt={`${name} logo`}
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
               </div>
             ))}
           </div>
