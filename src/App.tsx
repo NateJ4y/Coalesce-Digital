@@ -25,17 +25,45 @@ export default function App() {
       return;
     }
 
+    let lastScrollY = window.scrollY;
+    let scrollingDown = false;
+
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY !== lastScrollY) scrollingDown = currentY > lastScrollY;
+      lastScrollY = currentY;
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Anything already visible on first load starts in its final position.
+    const viewportHeight = window.innerHeight;
+    targets.forEach((target) => {
+      const rect = target.getBoundingClientRect();
+      if (rect.top < viewportHeight * 0.92 && rect.bottom > viewportHeight * 0.08) {
+        target.classList.add('is-in-view');
+      }
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
+        if (!scrollingDown) return;
+
         entries.forEach((entry) => {
-          entry.target.classList.toggle('is-in-view', entry.isIntersecting);
+          if (entry.isIntersecting) {
+            // One-way reveal: once shown, it is never hidden or animated again.
+            entry.target.classList.add('is-in-view');
+          }
         });
       },
-      { threshold: 0.12, rootMargin: '-8% 0px -8% 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
 
     targets.forEach((target) => observer.observe(target));
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   const openContact = (selected = '') => {
