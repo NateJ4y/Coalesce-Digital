@@ -1,5 +1,5 @@
-import { useEffect, useState, type FormEvent } from 'react';
-import { X, CheckCircle, Send, Mail, Phone, MessageCircle, AlertCircle } from 'lucide-react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
+import { X, CheckCircle, Send, Mail, Phone, MessageCircle, AlertCircle, ChevronDown } from 'lucide-react';
 
 const CONTACT_INFO = { email: 'coalesceuniversity@gmail.com', phoneDisplay: '+27 83 249 2219', phoneHref: 'tel:+27832492219', whatsappHref: 'https://wa.me/27832492219' };
 interface ContactFormData { name:string; email:string; phone:string; service:string; budget:string; message:string; website:string; }
@@ -39,4 +39,20 @@ export function ContactModal({isOpen,onClose,initialService}:{isOpen:boolean;onC
   </div></div>;
 }
 function Field({id,label,type,value,onChange,required=false}:{id:string;label:string;type:string;value:string;onChange:(v:string)=>void;required?:boolean}){return <div><label htmlFor={id} className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">{label}</label><input id={id} type={type} required={required} autoComplete={type==='email'?'email':type==='tel'?'tel':'name'} value={value} onChange={e=>onChange(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-neutral-300 outline-none bg-neutral-50 focus:bg-white"/></div>}
-function Select({id,label,value,onChange,options}:{id:string;label:string;value:string;onChange:(v:string)=>void;options:string[]}){return <div><label htmlFor={id} className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">{label}</label><select id={id} value={value} onChange={e=>onChange(e.target.value)} className="w-full px-4 py-3 rounded-xl border border-neutral-300 outline-none bg-neutral-50 focus:bg-white"><option value="">Select an area...</option>{options.map(o=><option key={o} value={o}>{o}</option>)}</select></div>}
+
+function Select({id,label,value,onChange,options}:{id:string;label:string;value:string;onChange:(v:string)=>void;options:string[]}) {
+ const [open,setOpen]=useState(false);
+ const ref=useRef<HTMLDivElement>(null);
+ useEffect(()=>{const close=(e:MouseEvent)=>{if(ref.current && !ref.current.contains(e.target as Node))setOpen(false)};document.addEventListener('mousedown',close);return()=>document.removeEventListener('mousedown',close)},[]);
+ const choose=(option:string)=>{onChange(option);setOpen(false)};
+ return <div ref={ref} className="relative">
+  <label id={id+'-label'} className="block text-xs font-semibold uppercase tracking-wider text-neutral-700 mb-1.5">{label}</label>
+  <button type="button" aria-haspopup="listbox" aria-expanded={open} aria-labelledby={id+'-label'} onClick={()=>setOpen(v=>!v)} className="w-full min-h-[46px] px-4 py-3 rounded-xl border border-neutral-300 outline-none bg-neutral-50 hover:bg-white focus:bg-white focus:ring-2 focus:ring-black/10 flex items-center justify-between gap-3 text-left transition-colors">
+   <span className={value ? 'text-neutral-900' : 'text-neutral-400'}>{value || 'Select an area...'}</span>
+   <ChevronDown className={`w-4 h-4 shrink-0 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+  </button>
+  {open && <div role="listbox" aria-label={label} className="absolute z-[20] left-0 right-0 mt-2 overflow-hidden rounded-2xl border border-neutral-200 bg-white p-1.5 shadow-xl">
+   {options.map(option=><button key={option} type="button" role="option" aria-selected={value===option} onClick={()=>choose(option)} className={`w-full rounded-xl px-4 py-3 text-left text-sm transition-colors ${value===option ? 'bg-black text-white' : 'text-neutral-800 hover:bg-neutral-100'}`}>{option}</button>)}
+  </div>}
+ </div>;
+}
