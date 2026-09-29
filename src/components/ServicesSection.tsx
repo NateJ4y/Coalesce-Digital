@@ -30,13 +30,14 @@ export function ServicesSection({ onContact }: { onContact: (service?: string) =
     cards.forEach((card) => observer.observe(card));
     return () => observer.disconnect();
   }, []);
-  return <section data-scroll-reveal="section" id="services" className="px-5 sm:px-8 py-20 sm:py-24 lg:py-28 max-w-[80rem] mx-auto" aria-labelledby="services-title">
-    <div data-scroll-reveal="left" className="max-w-3xl mb-12 sm:mb-14 lg:mb-16">
+
+  return <section id="services" className="px-5 sm:px-8 py-20 sm:py-24 lg:py-28 max-w-[80rem] mx-auto" aria-labelledby="services-title">
+    <div className="max-w-3xl mb-12 sm:mb-14 lg:mb-16">
       <p className="font-satisfy text-xl text-neutral-500">Everything digital, connected.</p>
       <h2 id="services-title" className="font-antonio font-bold uppercase text-5xl sm:text-7xl lg:text-8xl leading-[0.9] mt-2">What we do</h2>
       <p className="mt-6 text-neutral-600 text-lg">You can buy one service. Or we can connect several into a system that moves a customer from discovery to enquiry to sale.</p>
     </div>
-    <div data-scroll-reveal="up" className="border-t border-black/20 scroll-stagger">{services.map((item,index)=>{const Icon=item.icon;const active=open===index;const imageFirst=index%2===1;return <article key={item.title} data-service-card={index} data-scroll-reveal={index % 2 === 0 ? "left" : "right"} className={`border-b border-black/15 py-6 sm:py-8 lg:py-9 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${visibleServices.has(index) ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.08]'}`}>
+    <div className="border-t border-black/20">{services.map((item,index)=>{const Icon=item.icon;const active=open===index;const imageFirst=index%2===1;return <article key={item.title} data-service-card={index} className={`border-b border-black/15 py-6 sm:py-8 lg:py-9 transition-[opacity,transform] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${visibleServices.has(index) ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.08]'}`}>
       <button type="button" className="group w-full flex items-center justify-between text-left rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4" onClick={()=>setOpen(active?null:index)} aria-expanded={active} aria-controls={`service-panel-${index}`}><span className="sr-only">{active ? "Close" : "Open"} {item.title}</span>
         <span className="flex items-center gap-4 sm:gap-7"><span className="text-xs text-neutral-400 font-bold">{item.number}</span><Icon className="hidden sm:block" size={25} aria-hidden="true" /><span><span className="font-antonio font-bold uppercase text-3xl sm:text-5xl lg:text-6xl leading-[0.95] block transition-transform duration-300 origin-left group-hover:translate-x-1">{item.title}</span><span className="text-sm text-neutral-500 mt-1 block">{item.short}</span></span></span>
         <span aria-hidden="true" className={`ml-5 shrink-0 flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-full border border-black/15 bg-neutral-50 transition-all duration-300 group-hover:scale-110 group-hover:bg-black group-hover:text-white group-hover:border-black ${active ? 'rotate-180 bg-black text-white border-black' : ''}`}><ChevronDown size={20} className="transition-transform duration-300" /></span>
