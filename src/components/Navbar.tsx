@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, ChevronDown, Menu, X } from 'lucide-react';
-import { services } from '../data/site';
 
 const serviceGroups = [
   { label: 'BUILD & CONVERT', hint: 'Get your business online and turn attention into action.', items: ['Websites', 'Landing Pages', 'eCommerce / Shopify', 'Web Applications'] },
@@ -47,7 +46,7 @@ export function Navbar({ onContact }: { onContact: () => void }) {
       <button type="button" className="md:hidden absolute right-5 top-1/2 -translate-y-1/2 h-10 w-10 inline-flex items-center justify-center text-white" onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open} aria-controls="mobile-menu"><Menu size={22}/></button>
     </div>
 
-    {open && <div id="mobile-menu" className="fixed inset-0 z-[100] min-h-dvh overflow-y-auto bg-black text-white px-6 pb-10 pt-6" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    {open && <div id="mobile-menu" className="fixed inset-0 z-[100] min-h-dvh overflow-y-auto bg-black text-white px-6 pb-10 pt-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation">
       <div className="mx-auto flex w-full max-w-xl items-center justify-between">
         <button type="button" onClick={() => go('top')} className="h-12 inline-flex items-center" aria-label="Coalesce home"><img src="/Coalesce_Logo_BW-removebg-preview.png" alt="Coalesce" className="h-12 w-auto object-contain brightness-0 invert" /></button>
         <button type="button" onClick={closeMenu} className="h-11 w-11 inline-flex items-center justify-center rounded-full border border-white/20" aria-label="Close menu"><X size={24}/></button>
