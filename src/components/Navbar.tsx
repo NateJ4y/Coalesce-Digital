@@ -4,7 +4,7 @@ import { ArrowUpRight, Menu, X } from 'lucide-react';
 export function Navbar({ onContact }: { onContact: () => void }) {
   const [open, setOpen] = useState(false);
   const go = (id: string) => { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); setOpen(false); };
-  return <nav className="absolute top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-6xl rounded-full bg-transparent border border-white/25 px-5 py-2.5 text-white" aria-label="Main navigation">
+  return <nav className="absolute top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-24px)] max-w-6xl bg-transparent px-5 py-2.5 text-white" aria-label="Main navigation">
     <div className="flex h-9 items-center justify-center gap-5 sm:gap-8">
       <button type="button" onClick={() => go('top')} className="h-9 inline-flex items-center justify-center shrink-0" aria-label="Coalesce home"><img src="/Coalesce_Logo_BW-removebg-preview.png" alt="Coalesce" className="h-7 sm:h-8 w-auto object-contain brightness-0 invert" /></button>
       <div className="hidden md:flex h-9 items-center justify-center gap-7 text-[11px] uppercase tracking-[0.14em] font-bold leading-[1] text-white">
