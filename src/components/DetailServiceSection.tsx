@@ -1,4 +1,4 @@
-import { ArrowRight, Check, ChevronRight, LayoutDashboard, Megaphone, MousePointerClick, Sparkles, Workflow, Zap } from 'lucide-react';
+import { ArrowRight, Check, ChevronRight, LayoutDashboard, Megaphone, MousePointerClick, Sparkles, UserRound, Inbox, Bot, UsersRound, Workflow, Zap } from 'lucide-react';
 
 type Props = { onContact: (service?: string) => void; service: { id: string } };
 const A = ({ id }: { id: string }) => <span id={id} className="absolute -top-24" aria-hidden="true" />;
@@ -6,6 +6,14 @@ const A = ({ id }: { id: string }) => <span id={id} className="absolute -top-24"
 export const detailServices = [
   { id: 'websites' }, { id: 'workflows' }, { id: 'applications' },
   { id: 'content' }, { id: 'brand-systems' }, { id: 'growth' },
+];
+
+const automationApps = [
+  ['Instagram', 'instagram'], ['WhatsApp', 'whatsapp'], ['Google Calendar', 'googlecalendar'],
+  ['Gmail', 'gmail'], ['n8n', 'n8n'], ['Claude', 'anthropic'], ['ChatGPT', 'openai'],
+  ['Slack', 'slack'], ['LinkedIn', 'linkedin'], ['Google Maps', 'googlemaps'],
+  ['Telegram', 'telegram'], ['Facebook', 'facebook'], ['Google Sheets', 'googlesheets'],
+  ['Airtable', 'airtable'], ['Notion', 'notion'],
 ];
 
 export function DetailServiceSection({ service, onContact }: Props) {
@@ -37,10 +45,49 @@ function Website({ onContact }: Omit<Props,'service'>) {
 }
 
 function Automation({ onContact }: Omit<Props,'service'>) {
+  const steps = [
+    ['01','Customer enquiries','A form, WhatsApp message or booking starts the process.', UserRound],
+    ['02','Lead is captured','The right information lands where your team needs it.', Inbox],
+    ['03','System responds','Notifications, email or AI can handle the next step.', Bot],
+    ['04','Team follows through','People focus on decisions and relationships, not admin.', UsersRound],
+  ] as const;
+
   return <section data-scroll-reveal="section" id="workflows" className="relative border-y border-black/10 bg-white px-5 py-20 sm:px-8 sm:py-28">
     <A id="lead-capture"/><A id="ai"/>
-    <div className="mx-auto max-w-[80rem]"><div data-scroll-reveal="left" className="max-w-3xl"><p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#5b8cff]">02 / Automation</p><h2 className="mt-3 font-antonio text-6xl font-bold uppercase leading-[.88] sm:text-8xl">Stop doing<br/><span className="text-[#5b8cff]">the same work twice.</span></h2><p className="mt-7 text-lg leading-relaxed text-neutral-600 sm:text-xl">Automation means the right thing happens without someone having to remember to make it happen.</p></div>
-      <div data-scroll-reveal="up" className="mt-14 grid gap-4 lg:grid-cols-4 scroll-stagger">{[['01','Customer enquires','A form, WhatsApp message or booking starts the process.'],['02','Lead is captured','The right information lands where your team needs it.'],['03','System responds','Notifications, email or AI can handle the next step.'],['04','Team follows through','People focus on decisions and relationships, not admin.']].map(([n,t,d])=><div key={n} data-scroll-reveal="up" className="rounded-3xl border border-black/10 bg-[#f3f3f3] p-6"><span className="text-[10px] font-bold text-neutral-400">{n}</span><Workflow className="mt-10" size={20}/><h3 className="mt-5 font-antonio text-3xl font-bold uppercase">{t}</h3><p className="mt-3 text-sm leading-relaxed text-neutral-500">{d}</p></div>)}</div>
+    <div className="mx-auto max-w-[80rem]">
+      <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div data-scroll-reveal="left" className="lg:col-span-7">
+          <p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#5b8cff]">02 / Automation</p>
+          <h2 className="mt-3 font-antonio text-6xl font-bold uppercase leading-[.88] sm:text-8xl">Stop doing<br/><span className="text-[#5b8cff]">the same work twice.</span></h2>
+          <p className="mt-7 max-w-3xl text-lg leading-relaxed text-neutral-600 sm:text-xl">Automation means the right thing happens without someone having to remember to make it happen.</p>
+        </div>
+        <div data-scroll-reveal="right" className="lg:col-span-5 lg:justify-self-end">
+          <p className="mb-4 text-right text-[10px] font-bold uppercase tracking-[.25em] text-neutral-400">Connect your stack</p>
+          <div className="flex max-w-xl flex-wrap justify-end gap-2.5 sm:gap-3">
+            {automationApps.map(([name, icon]) => (
+              <div key={name} title={name} className="group flex h-12 w-12 items-center justify-center rounded-2xl border border-black/10 bg-white p-2.5 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:scale-105 sm:h-14 sm:w-14 sm:p-3">
+                <img src={`https://cdn.simpleicons.org/${icon}`} alt={`${name} logo`} loading="lazy" className="h-full w-full object-contain" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div data-scroll-reveal="up" className="relative mt-14 grid gap-3 lg:grid-cols-4 scroll-stagger">
+        <div aria-hidden="true" className="pointer-events-none absolute left-[12%] right-[12%] top-1/2 hidden h-px bg-gradient-to-r from-black/15 via-black/40 to-black/5 lg:block" />
+        {steps.map(([n,t,d,Icon], i) => (
+          <div key={n} data-scroll-reveal="up" className={`relative z-10 rounded-3xl p-6 sm:p-7 ${['bg-neutral-950 text-white','bg-neutral-800 text-white','bg-neutral-500 text-white','bg-neutral-200 text-black'][i]}`}>
+            <div className="flex items-start justify-between gap-4">
+              <span className={`text-[10px] font-bold tracking-widest ${i < 3 ? 'text-white/45' : 'text-black/40'}`}>{n}</span>
+              <Icon size={42} strokeWidth={1.6} aria-hidden="true" />
+            </div>
+            <h3 className="mt-12 font-antonio text-3xl font-bold uppercase leading-none sm:text-4xl">{t}</h3>
+            <p className={`mt-4 text-sm leading-relaxed ${i < 3 ? 'text-white/60' : 'text-black/60'}`}>{d}</p>
+            {i < steps.length - 1 && <ChevronRight className={`absolute -right-3 top-1/2 z-20 hidden lg:block ${i < 3 ? 'text-neutral-500' : 'text-neutral-300'}`} size={22} strokeWidth={2.5} aria-hidden="true" />}
+          </div>
+        ))}
+      </div>
+
       <div data-scroll-reveal="scale" className="mt-5 flex flex-col justify-between gap-6 rounded-3xl bg-black p-7 text-white sm:p-9 lg:flex-row lg:items-center"><div><p className="text-[10px] font-bold uppercase tracking-widest text-[#5b8cff]">Workflows • Lead Capture • AI</p><p className="mt-3 max-w-2xl font-antonio text-3xl font-bold uppercase sm:text-4xl">Connect the moving parts. Let the system carry the repetition.</p></div><div className="shrink-0"><p className="font-antonio text-4xl font-bold">From R1,500</p><button onClick={()=>onContact('Automation')} className="levitate mt-4 rounded-full bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-black">Automate a process <ArrowRight className="ml-2 inline" size={14}/></button></div></div>
     </div>
   </section>;
