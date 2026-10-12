@@ -36,7 +36,6 @@ export default function App() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    // Anything already visible on first load starts in its final position.
     const viewportHeight = window.innerHeight;
     targets.forEach((target) => {
       const rect = target.getBoundingClientRect();
@@ -48,12 +47,8 @@ export default function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         if (!scrollingDown) return;
-
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // One-way reveal: once shown, it is never hidden or animated again.
-            entry.target.classList.add('is-in-view');
-          }
+          if (entry.isIntersecting) entry.target.classList.add('is-in-view');
         });
       },
       { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
@@ -100,8 +95,8 @@ export default function App() {
         <div data-scroll-reveal="up" className="mx-auto grid max-w-[80rem] gap-8 lg:grid-cols-4 lg:gap-10">
           <div><div className="font-antonio text-3xl font-bold">COALESCE<span className="text-neutral-500">.</span></div><p className="mt-4 max-w-xs text-sm text-neutral-400">Digital transformation and business growth for businesses ready to build, connect and grow.</p></div>
           <div><p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Explore</p><div className="mt-4 space-y-3 text-sm"><a className="footer-link" href="#services">Services</a><a className="footer-link" href="#journey">How it works</a><a className="footer-link" href="#pricing">Pricing</a><a className="footer-link" href="#work">Why Coalesce</a></div></div>
-          <div><p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Contact</p><div className="mt-4 space-y-3 text-sm"><a className="footer-link flex items-center gap-2" href="mailto:coalesceuniversity@gmail.com"><Mail size={14}/>coalesceuniversity@gmail.com</a><a className="footer-link flex items-center gap-2" href="tel:+27832492219"><Phone size={14}/>+27 83 249 2219</a></div></div>
-          <div><p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Availability</p><p className="mt-4 text-sm text-neutral-400">South Africa • Serving worldwide</p><p className="mt-2 text-sm text-neutral-400">Mon–Fri · 08:00–18:00 SAST</p></div>
+          <div><p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Service guides</p><div className="mt-4 space-y-3 text-sm"><a className="footer-link" href="/services/website-design.html">Website design</a><a className="footer-link" href="/services/digital-marketing.html">Digital marketing</a><a className="footer-link" href="/services/business-automation.html">Business automation</a><a className="footer-link" href="/services/branding.html">Brand identity</a></div></div>
+          <div><p className="text-[10px] font-bold uppercase tracking-widest text-neutral-500">Contact</p><div className="mt-4 space-y-3 text-sm"><a className="footer-link flex items-center gap-2" href="mailto:coalesceuniversity@gmail.com"><Mail size={14}/>coalesceuniversity@gmail.com</a><a className="footer-link flex items-center gap-2" href="tel:+27832492219"><Phone size={14}/>+27 83 249 2219</a><p className="pt-2 text-neutral-400">South Africa · Serving worldwide</p></div></div>
         </div>
         <div data-scroll-reveal="up" className="mx-auto mt-14 flex max-w-[80rem] flex-col justify-between gap-2 border-t border-white/10 pt-6 text-xs text-neutral-600 sm:flex-row"><span>© {new Date().getFullYear()} Coalesce Digital</span><span>Build. Connect. Grow.</span></div>
       </footer>
