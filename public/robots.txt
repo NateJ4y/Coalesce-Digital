@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://coalesce.gisak.com/sitemap.xml
+Sitemap: https://coalesce-digital.vercel.app/sitemap.xml
